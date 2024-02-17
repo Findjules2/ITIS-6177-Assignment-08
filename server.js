@@ -124,15 +124,41 @@ pool.getConnection()
       conn.end();
     })
 })
-
-
-  //get agents to make sure no duplicate agent id
-
-  //If agent id is available then post new agent
-  console.log(agent_code, agent_name, working_area, commission, phone_no, country);
-
-
 });
+
+/**
+ * @swagger
+ * /agents/:agent_code:
+ *    put:
+ *      description: Update agent information
+ *      produces:
+ *          - application/json
+ *      parameters:
+ *          - in: body
+ *            name: body
+ *            description: json body for agent data to update agent
+ *            required: true
+ *            schema:
+ *              type: object
+ *              properties:
+ *                agent_code:
+ *                  type: string
+ *                agent_name:
+ *                  type: string
+ *                working_area:
+ *                  type: string
+ *                commission:
+ *                  type: string
+ *                phone_no:
+ *                  type: string
+ *                country:
+ *                  type: string
+ *      responses:
+ *          200:
+ *              description: A status message stating agent updated
+ *          400:
+ *              description: Status message states error of no agent code found.
+ */
 
 app.put('/agents/:agent_code', (req, res ) => {
 
@@ -160,6 +186,32 @@ app.put('/agents/:agent_code', (req, res ) => {
   })
   });
 
+  /**
+ * @swagger
+ * /agents/names/:agent_code:
+ *    patch:
+ *      description: Update agent name
+ *      produces:
+ *          - application/json
+ *      parameters:
+ *          - in: body
+ *            name: body
+ *            description: json body to update agent name
+ *            required: true
+ *            schema:
+ *              type: object
+ *              properties:
+ *                agent_code:
+ *                  type: string
+ *                agent_name:
+ *                  type: string
+ *      responses:
+ *          200:
+ *              description: A status message stating agent name updated
+ *          400:
+ *              description: Status message states error of no agent code found.
+ */
+
   app.patch('/agents/names/:agent_code', (req, res ) => {
 
     const agent_code = req.params.agent_code;
@@ -185,6 +237,30 @@ app.put('/agents/:agent_code', (req, res ) => {
         })
     })
     });
+
+      /**
+ * @swagger
+ * /agents/:agent_code:
+ *    delete:
+ *      description: Delete agent
+ *      produces:
+ *          - application/json
+ *      parameters:
+ *          - in: body
+ *            name: body
+ *            description: json body to update agent name
+ *            required: true
+ *            schema:
+ *              type: object
+ *              properties:
+ *                agent_code:
+ *                  type: string
+ *      responses:
+ *          200:
+ *              description: A status message stating agent deleted
+ *          400:
+ *              description: Status message states error of no agent code found.
+ */
 
     app.delete('/agents/:agent_code', (req, res ) => {
 
@@ -246,31 +322,7 @@ app.get('/agents/names', (req, res ) => {
 
 /**
  * @swagger
- * /agents/names:
- *    patch:
- *      description: Correct an agent name and return all the names of agents
- *      produces:
- *          - application/json
- *      responses:
- *          200:
- *              description: Object names containing array of corrected agent names object.
- */
-
-/**
- * @swagger
- * /agents/names:
- *    delete:
- *      description: Delete an agent and return all the remaining names of agents
- *      produces:
- *          - application/json
- *      responses:
- *          200:
- *              description: Object names containing array of reduced agent names object.
- */
-
-/**
- * @swagger
- * /agents/area:
+ * /agents/areas:
  *    get:
  *      description: Return all the areas that agents work
  *      produces:
@@ -299,18 +351,6 @@ app.get('/agents/areas', (req, res ) => {
          })
    })
 });
-
-/**
- * @swagger
- * /customers/id:
- *    put:
- *      description: Update agent id for customer based on customer id
- *      produces:
- *          - application/json
- *      responses:
- *          200:
- *              description: Object customer is being updated to change agent helping them.
- */
 
 app.listen(port, () => {
     console.log(`Example app listening on http://localhost:${port}`) });
