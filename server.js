@@ -134,6 +134,11 @@ pool.getConnection()
  *      produces:
  *          - application/json
  *      parameters:
+ *          - in: query
+ *            name: agent_code
+ *            description: String of agent_code needed to update agent
+ *            required: true
+ *            type: string
  *          - in: body
  *            name: body
  *            description: json body for agent data to update agent
@@ -141,8 +146,6 @@ pool.getConnection()
  *            schema:
  *              type: object
  *              properties:
- *                agent_code:
- *                  type: string
  *                agent_name:
  *                  type: string
  *                working_area:
@@ -194,6 +197,11 @@ app.put('/agents/:agent_code', (req, res ) => {
  *      produces:
  *          - application/json
  *      parameters:
+ *          - in: query
+ *            name: agent_code
+ *            description: String agent_code to update agent name
+ *            required: true
+ *            type: string
  *          - in: body
  *            name: body
  *            description: json body to update agent name
