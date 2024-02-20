@@ -128,13 +128,13 @@ pool.getConnection()
 
 /**
  * @swagger
- * /agents/:agent_code:
+ * /agents/{agent_code}:
  *    put:
  *      description: Update agent information
  *      produces:
  *          - application/json
  *      parameters:
- *          - in: query
+ *          - in: path
  *            name: agent_code
  *            description: String of agent_code needed to update agent
  *            required: true
@@ -191,13 +191,13 @@ app.put('/agents/:agent_code', (req, res ) => {
 
   /**
  * @swagger
- * /agents/names/:agent_code:
+ * /agents/names/{agent_code}:
  *    patch:
  *      description: Update agent name
  *      produces:
  *          - application/json
  *      parameters:
- *          - in: query
+ *          - in: path
  *            name: agent_code
  *            description: String agent_code to update agent name
  *            required: true
@@ -209,8 +209,6 @@ app.put('/agents/:agent_code', (req, res ) => {
  *            schema:
  *              type: object
  *              properties:
- *                agent_code:
- *                  type: string
  *                agent_name:
  *                  type: string
  *      responses:
@@ -248,21 +246,17 @@ app.put('/agents/:agent_code', (req, res ) => {
 
       /**
  * @swagger
- * /agents/:agent_code:
+ * /agents/{agent_code}:
  *    delete:
  *      description: Delete agent
  *      produces:
  *          - application/json
  *      parameters:
- *          - in: body
- *            name: body
- *            description: json body to update agent name
+ *          - in: path
+ *            name: agent_code
+ *            description: String agent_code to delete agent
  *            required: true
- *            schema:
- *              type: object
- *              properties:
- *                agent_code:
- *                  type: string
+ *            type: string
  *      responses:
  *          200:
  *              description: A status message stating agent deleted
